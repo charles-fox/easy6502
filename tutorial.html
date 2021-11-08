@@ -19,8 +19,7 @@
     <div class="wrapper">
       <header>
         <h1>Easy 6502</h1>
-        <p><em>by</em> <a href="https://twitter.com/skilldrick">Nick Morgan</a>, licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
-        <p class="view"><a href="https://github.com/skilldrick/easy6502/tree/gh-pages">Fork me on GitHub</a></p>
+        <p><em>by</em> <a href="https://twitter.com/skilldrick">Nick Morgan</a>, licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. <a href="https://github.com/skilldrick/easy6502/tree/gh-pages">Fork me on GitHub</a></p>
         <ul>
           <li><a href="#intro">Introduction</a></li>
           <li><a href="#first-program">Our first program</a></li>
@@ -34,52 +33,10 @@
         </ul>
       </header>
       <section>
-
-        <h2 id="intro">Introduction</h2>
-
-<p>In this tiny ebook I’m going to show you how to get started writing 6502
-assembly language. The 6502 processor was massive in the seventies and
-eighties, powering famous computers like the
-<a href="http://en.wikipedia.org/wiki/BBC_Micro">BBC Micro</a>,
-<a href="http://en.wikipedia.org/wiki/Atari_2600">Atari 2600</a>,
-<a href="http://en.wikipedia.org/wiki/Commodore_64">Commodore 64</a>,
-<a href="http://en.wikipedia.org/wiki/Apple_II">Apple II</a>, and the <a href="http://en.wikipedia.org/wiki/Nintendo_Entertainment_System">Nintendo Entertainment
-System</a>. Bender in
-Futurama <a href="http://www.transbyte.org/SID/SID-files/Bender_6502.jpg">has a 6502 processor for a
-brain</a>. <a href="http://www.pagetable.com/docs/terminator/00-37-23.jpg">Even the
-Terminator was programmed in
-6502</a>.</p>
-
-<p>So, why would you want to learn 6502? It’s a dead language isn’t it? Well,
-so’s Latin. And they still teach that.
-<a href="http://en.wikipedia.org/wiki/Q.E.D.">Q.E.D.</a></p>
-
-<p>(Actually, I’ve been reliably informed that 6502 processors are still being
-produced by <a href="http://www.westerndesigncenter.com/wdc/w65c02s-chip.cfm">Western Design Center</a>
-and <a href="http://www.mouser.co.uk/Search/Refine.aspx?Keyword=65C02">sold to hobbyists</a>, so clearly 6502
-<em>isn’t</em> a dead language! Who knew?)</p>
-
-<p>Seriously though, I think it’s valuable to have an understanding of assembly
-language. Assembly language is the lowest level of abstraction in computers -
-the point at which the code is still readable. Assembly language translates
-directly to the bytes that are executed by your computer’s processor.
-If you understand how it works, you’ve basically become a computer
-<a href="http://skilldrick.co.uk/2011/04/magic-in-software-development/">magician</a>.</p>
-
-<p>Then why 6502? Why not a <em>useful</em> assembly language, like
-<a href="http://en.wikipedia.org/wiki/X86">x86</a>? Well, I don’t think learning x86 is
-useful. I don’t think you’ll ever have to <em>write</em> assembly language in your day
-job - this is purely an academic exercise, something to expand your mind and
-your thinking. 6502 was originally written in a different age, a time when the majority of
-developers were writing assembly directly, rather than in these new-fangled
-high-level programming languages. So, it was designed to be written by humans.
-More modern assembly languages are meant to written by compilers, so let’s
-leave it to them. Plus, 6502 is <em>fun</em>. Nobody ever called x86 <em>fun</em>.</p>
-
 <h2 id="first-program">Our first program</h2>
 
-<p>So, let’s dive in! That thing below is a little <a href="https://github.com/skilldrick/6502js">JavaScript 6502 assembler and
-simulator</a> that I adapted for this book.
+<p>That thing below is an interactive 6502 assembler and
+simulator. 
 Click <strong>Assemble</strong> then <strong>Run</strong> to assemble and run the snippet of assembly language.</p>
 
 <div class="widget">
@@ -156,8 +113,7 @@ $f: Light grey
 </div>
 
 <p>Hopefully the black area on the right now has three coloured “pixels” at the
-top left. (If this doesn’t work, you’ll probably need to upgrade your browser to
-something more modern, like Chrome or Firefox.)</p>
+top left. (If this doesn’t work, you may need to upgrade your browser.)</p>
 
 <p>So, what’s this program actually doing? Let’s step through it with the
 debugger. Hit <strong>Reset</strong>, then check the <strong>Debugger</strong> checkbox to start the
@@ -166,28 +122,23 @@ noticed that <code class="language-plaintext highlighter-rouge">A=</code> change
 <code class="language-plaintext highlighter-rouge">$0602</code>.</p>
 
 <p>Any numbers prefixed with <code class="language-plaintext highlighter-rouge">$</code> in 6502 assembly language (and by extension, in
-this book) are in hexadecimal (hex) format. If you’re not familiar with hex
-numbers, I recommend you read <a href="http://en.wikipedia.org/wiki/Hexadecimal">the Wikipedia
-article</a>. Anything prefixed with <code class="language-plaintext highlighter-rouge">#</code>
+this book) are in hex. Anything prefixed with <code class="language-plaintext highlighter-rouge">#</code>
 is a literal number value. Any other number refers to a memory location.</p>
 
 <p>Equipped with that knowledge, you should be able to see that the instruction
-<code class="language-plaintext highlighter-rouge">LDA #$01</code> loads the hex value <code class="language-plaintext highlighter-rouge">$01</code> into register <code class="language-plaintext highlighter-rouge">A</code>. I’ll go into more
-detail on registers in the next section.</p>
+<code class="language-plaintext highlighter-rouge">LDA #$01</code> loads the hex value <code class="language-plaintext highlighter-rouge">$01</code> into register <code class="language-plaintext highlighter-rouge">A</code>.</p>
 
 <p>Press <strong>Step</strong> again to execute the second instruction. The top-left pixel of
 the simulator display should now be white. This simulator uses the memory
 locations <code class="language-plaintext highlighter-rouge">$0200</code> to <code class="language-plaintext highlighter-rouge">$05ff</code> to draw pixels on its display. The values <code class="language-plaintext highlighter-rouge">$00</code> to
 <code class="language-plaintext highlighter-rouge">$0f</code> represent 16 different colours (<code class="language-plaintext highlighter-rouge">$00</code> is black and <code class="language-plaintext highlighter-rouge">$01</code> is white), so
 storing the value <code class="language-plaintext highlighter-rouge">$01</code> at memory location <code class="language-plaintext highlighter-rouge">$0200</code> draws a white pixel at the
-top left corner. This is simpler than how an actual computer would output
-video, but it’ll do for now.</p>
+top left corner.</p>
 
 <p>So, the instruction <code class="language-plaintext highlighter-rouge">STA $0200</code> stores the value of the <code class="language-plaintext highlighter-rouge">A</code> register to memory
 location <code class="language-plaintext highlighter-rouge">$0200</code>. Click <strong>Step</strong> four more times to execute the rest of the
 instructions, keeping an eye on the <code class="language-plaintext highlighter-rouge">A</code> register as it changes.</p>
 
-<h3 id="exercises">Exercises</h3>
 
 <ol>
   <li>Try changing the colour of the three pixels.</li>
@@ -215,8 +166,7 @@ location <code class="language-plaintext highlighter-rouge">$0600</code>, so <co
 
 <p>The last section shows the processor flags. Each flag is one bit, so all seven
 flags live in a single byte. The flags are set by the processor to give
-information about the previous instruction. More on that later. <a href="http://www.obelisk.me.uk/6502/registers.html">Read more
-about the registers and flags here</a>.</p>
+information about the previous instruction.</p>
 
 <h2 id="instructions">Instructions</h2>
 
@@ -393,12 +343,10 @@ is set by all instructions where the result is zero.</p>
 
 <p>A full list of the 6502 instruction set is <a href="http://www.6502.org/tutorials/6502opcodes.html">available
 here</a> and
-<a href="http://www.obelisk.me.uk/6502/reference.html">here</a> (I usually refer to
-both pages as they have their strengths and weaknesses). These pages detail the
+<a href="http://www.obelisk.me.uk/6502/reference.html">here</a>. These pages detail the
 arguments to each instruction, which registers they use, and which flags they
-set. They are your bible.</p>
+set.</p>
 
-<h3 id="exercises-1">Exercises</h3>
 
 <ol>
   <li>You’ve seen <code class="language-plaintext highlighter-rouge">TAX</code>. You can probably guess what <code class="language-plaintext highlighter-rouge">TAY</code>, <code class="language-plaintext highlighter-rouge">TXA</code> and <code class="language-plaintext highlighter-rouge">TYA</code> do,
@@ -410,9 +358,6 @@ uses this instruction.</li>
 </ol>
 
 <h2 id="branching">Branching</h2>
-
-<p>So far we’re only able to write basic programs without any branching logic.
-Let’s change that.</p>
 
 <p>6502 assembly language has a bunch of branching instructions, all of which
 branch based on whether certain flags are set or not. In this example we’ll be
@@ -512,8 +457,6 @@ number of bytes to go backwards or forwards from the next instruction) so
 branch instructions can only go forward and back around 256 bytes. This means
 they can only be used to move around local code. For moving further you’ll need
 to use the jumping instructions.</p>
-
-<h3 id="exercises-2">Exercises</h3>
 
 <ol>
   <li>The opposite of <code class="language-plaintext highlighter-rouge">BNE</code> is <code class="language-plaintext highlighter-rouge">BEQ</code>. Try writing a program that uses <code class="language-plaintext highlighter-rouge">BEQ</code>.</li>
@@ -947,7 +890,6 @@ $f: Light grey
 <code class="language-plaintext highlighter-rouge">$07</code>. These form the address <code class="language-plaintext highlighter-rouge">$0703</code>. The value of the <code class="language-plaintext highlighter-rouge">Y</code> register is added
 to this address to give the final address <code class="language-plaintext highlighter-rouge">$0704</code>.</p>
 
-<h3 id="exercise">Exercise</h3>
 
 <ol>
   <li>Try to write code snippets that use each of the 6502 addressing modes.
@@ -1953,7 +1895,7 @@ zero again. The first <code class="language-plaintext highlighter-rouge">dex</co
 
       </section>
       <footer>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+        
       </footer>
     </div>
 
